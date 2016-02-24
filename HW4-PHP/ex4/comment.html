@@ -1,29 +1,34 @@
 <html>
 <head>
 <script>
+//function that show RSS
 function showRSS(str) {
+  //if element length is 0 leave it blank
   if (str.length==0) {
     document.getElementById("rssOutput").innerHTML="";
     return;
   }
+  //verify the browser
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   } else {  // code for IE6, IE5
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
+  //print the RSS
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
     }
   }
+  //call php method
   xmlhttp.open("GET","getrss.php?q="+str,true);
   xmlhttp.send();
 }
 </script>
 </head>
 <body>
-
+//form to get the RSS data
 <form>
 <select onchange="showRSS(this.value)">
 <option value="">Select an RSS-feed:</option>
@@ -32,15 +37,15 @@ function showRSS(str) {
 </select>
 </form>
 <br>
-<div id="rssOutput">RSS-feed will be listed here...</div>
+<div id="rssOutput">RSS-feed will be listed here...</div> // div that is going to be changed
 </body>
 </html>
 
-
+//php code
 
 <?php
 //get the q parameter from URL
-$q=$_GET["q"];
+$q=$_GET["q"];//retrive information from url to q
 
 //find out which feed was selected
 if($q=="Google") {
