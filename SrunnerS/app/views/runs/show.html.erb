@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @run.distance %>
+</p>
+
+<p>
+  <strong>Inittime:</strong>
+  <%= @run.initTime %>
+</p>
+
+<p>
+  <strong>Endtime:</strong>
+  <%= @run.endTime %>
+</p>
+
+<p>
+  <strong>Rundate:</strong>
+  <%= @run.runDate %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @run.user %>
+</p>
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>

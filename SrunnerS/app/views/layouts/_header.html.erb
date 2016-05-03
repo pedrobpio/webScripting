@@ -1,0 +1,50 @@
+<!--<nav id= "top" class = "navbar navbar-default">
+	<div class = "container-fluid">
+		<h1>SrunnerS</h1>
+	<ul class="nav navbar-nav navbar-right">
+	
+		<div class = "row">
+
+			
+				
+			
+			<a id = "reference" href="http://www.freepik.com">background Designed by Freepik</a>
+			        <% if logged_in? %>
+			        <li>
+                <%= link_to "Log out", logout_path, method: "delete" %>
+              </li>
+			         <% end %>
+		</div>
+	</div>
+</ul>
+</nav>
+-->
+
+<header  class="navbar navbar-inverse top">
+  <div class="container">
+ 		<a id ="top-title" class="navbar-brand text-center" href="#">SrunnerS</a>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <% if logged_in? %>
+          
+          <li>
+          	<%= link_to 'Edit profile', edit_user_path(@current_user) %>
+          </li>	
+            
+              <li>
+                <%= link_to "Log out", logout_path, method: "delete" %>
+              </li>
+           
+        <% else %>
+        <li>
+          <%= link_to "Sign up", signup_path %>
+        </li>
+         <li>
+          <%= link_to "log in", login_path %>
+        </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

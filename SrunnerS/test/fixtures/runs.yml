@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  distance: 1.5
+  initTime: 2016-04-30 12:36:05
+  endTime: 2016-04-30 12:36:05
+  runDate: 2016-04-30
+  user_id: 
+
+two:
+  distance: 1.5
+  initTime: 2016-04-30 12:36:05
+  endTime: 2016-04-30 12:36:05
+  runDate: 2016-04-30
+  user_id: 

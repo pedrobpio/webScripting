@@ -1,0 +1,198 @@
+  <div class ="container" >
+
+    <p id="notice"><%= notice %></p>
+
+
+    <div class "row list-group">
+
+      <div class = "col-md-5 col-md-offset-2 ">
+       <a class= "list-group-item">
+        <% @sumdistance = 0%>
+        <% @sumDifTime = 0%>
+        <% @velocity%>
+        <% @user.runs.each do |run| %>
+
+        <% if @fix != @user.runs.count  %>
+        <% @initTime = run.initTime %> 
+        <% @endTime = run.endTime %>
+        <% @difTime = @endTime - @initTime %>
+        <% @sumdistance += run.distance%>
+        <% @sumDifTime += @difTime%>
+
+        <%end%>
+        
+        <%end%>
+        
+        <p>
+
+          <h5><strong>Hello <%= @user.name %>,</strong></h5>
+
+        </p>
+
+
+
+        <a class= "list-group-item">
+          <p>
+            <strong>Number of runs: </strong>
+            <%= @user.runs.count%>            
+          </p>
+        </a>
+
+        <a class= "list-group-item">
+          <p>
+            
+            <strong>total distance</strong>
+            <%= @sumdistance %>
+          </p>
+        </a>
+
+        <a class= "list-group-item">
+          <p>
+            <strong> total run time:</strong>
+          <%= Time.at((@sumDifTime )).utc.strftime("%H:%M:%S") %>
+          </p>
+        </a>
+        
+
+        <a class= "list-group-item">
+          <p>
+
+             <% @velocity = (3.6*(@sumdistance * 1000) / (@sumDifTime ))%>
+
+              <h5><strong>Avg. pace:</strong> <%= @velocity.round(2) %> km/h</h5>
+          </p>
+        </a>
+
+      </a>
+    </div>
+
+
+
+
+    <div class= "col-md-4">
+      <div class = "list-group"> 
+       <a class= "list-group-item">
+        <h2>Add a run:</h2>
+        <%= form_for([@user, @user.runs.build] ,  :class => 'form-inline') do |f| %>
+        <div class ="form-group">
+          <%= f.label :distance %>
+          <%= f.text_field :distance, :placeholder => "km" %>
+        </div>
+        <div class ="form-group">
+          <%= f.label :initTime, "Started at" %>
+          <%= f.time_select :initTime , :include_seconds => true %>
+        </div>
+        <div class ="form-group"> 
+          <%= f.label :endTime, "Ended at" %>
+          <%= f.time_select :endTime,  :include_seconds => true %>
+        </div>
+
+        <p>
+          <%= f.submit "add Run", :class => "btn btn-primary form-control"%>
+        </p>
+        <% end %>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div class = "col-md-9 col-md-offset-2">
+
+  <% if @user.runs.any? %>
+  <%@fix = 0%>
+  <% @user.runs.each do |run| %>
+  <% if @fix != @user.runs.count  %>
+
+  <% @initTime = run.initTime %> 
+  <% @endTime = run.endTime %>
+  <% @difTime = @endTime - @initTime %>
+  <% @velocity%>
+
+  <div class = "list-group"> 
+
+   <a class= "list-group-item">
+    <div class = "container">
+      <div class ="row">
+
+
+        <div class = "col-md-1 text-center">
+
+          <p>  
+            <h3>Run <%= @fix+1 %></h3>
+          </p>
+        </div>
+
+        <div class = "col-md-1 text-center">
+
+          <p>  
+            <strong>distance:</strong>
+            <h5><%= run.distance%></h5>
+
+          </p>
+        </div>
+        <div class = "col-md-1 text-center">
+
+          <p class ="list-group-iten">
+            <strong>started at:</strong>
+            <h5><%= run.initTime.strftime("%H:%M:%S") %></h5>
+
+          </p>
+
+
+
+        </div>
+
+        <div class = "col-md-1 text-center">
+
+          <p class ="list-group-iten">
+            <strong>ended at:</strong>
+            <h5><%= run.endTime.strftime("%H:%M:%S") %></h5>
+
+          </p>
+        </div>
+
+        <div class = "col-md-1 text-center">
+          <p>
+            <strong>run Time:</strong>
+            <h5><%= Time.at(@difTime).utc.strftime("%H:%M:%S")%><h5>
+
+            </p>
+          </div>
+
+
+          <div class = "col-md-1 text-center">
+            <p>
+              <strong>avg pace:</strong>
+              <% @velocity = (3.6*(run.distance * 1000) / (@difTime ))%>
+              <h5><%= @velocity.round(2) %> km/h</h5>
+
+            </p>
+          </div>
+
+
+          <div class = "col-md-2 text-center">
+            <p>
+
+             <%= button_to "delete", run, method: :delete,data: { confirm: "You sure?" }, :class => "btn btn-primary" %>
+
+           </p>
+         </div>
+
+
+
+       </div>
+
+     </div>
+
+
+   </a>
+ </div>
+ <% end %>
+ <%@fix += 1 %>
+ <% end %>
+ <% end %>
+</div>
+
+
+</div>

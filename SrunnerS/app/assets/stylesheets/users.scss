@@ -1,0 +1,41 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	background: image-url("18.svg") no-repeat center center fixed;;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+	
+
+}
+
+.back-text{
+	color: #fff !important;
+	
+}
+
+#top-title:hover {
+   
+	color: #222222 !important;
+}
+
+.top a{
+	text-decoration: none !important;
+	color: #222222 !important;
+}
+
+.top a:hover{
+	text-decoration: none !important;
+	color: #fff !important;
+}
+#space{
+	margin-bottom: 5%;
+}
+
+.top{
+	background-color: #428bca;
+}
